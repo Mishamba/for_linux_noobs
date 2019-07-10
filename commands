@@ -1,0 +1,40 @@
+#!/bin/bash 
+tmp=""
+tkeys=""
+for cur_par in $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11}
+do
+    if [[ $cur_par = "|" ]]
+    then
+        echo "
+        | - units commands
+        "
+        continue
+    fi
+
+    if man $cur_par > /dev/null			#need no echo
+    then
+        man $cur_par | grep -w "^       $cur_par"   #need to find sence. need to upgrade.
+        tmp=$cur_par				#store current command
+    elif man $tmp > /dev/null                       #maybe this condition is not necessary  
+    then
+            for i in 1 2 3 4 5 6 7 8 9 10	#expexted only 10 lines. need infinity. rewrite with WHILE
+            do
+                if [[ `man $tmp | grep -w -A $i "       $cur_par" | grep -wo "       -[A-Za-z]" | wc -l` = "1" ]] #need to add command to count keys 
+                then
+                    continue
+                else
+                    let "i=i-1"
+                    echo `man $tmp | grep -w -A $i "       $cur_par"`
+                    break
+                fi
+            done
+    fi
+done
+
+echo "
+
+if u don't get, what u expected, just enter
+\"man (what u expected)\" 
+then
+\"/(what u coudn't get)\""
+                              
