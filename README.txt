@@ -1,4 +1,4 @@
-hello. this program was created by noob for noobes. to start it enter "./commands (then your command)". this script works, but with some problems. for example:
+hello. this program was created by noob for noobs. to start it enter "./commands (then your command)". this script works, but with some problems. for example:
 
 	if your command has "|" then u need to enter it with double quotes, like this "|".
 	
